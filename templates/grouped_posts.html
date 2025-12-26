@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class = "text-uppercase text-warning" style="letter-spacing: 2px;">{{ category }}</h3>
+<div class="row mb-2">
+  {% if posts%}
+  {% for post in posts %}
+      <div class="col-md-6">
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3>{{ post.title }}</h3>
+            <small class="mb-1 text-muted">{{ post.created_at | timesince }} ago | {{ post.author }}</small>
+            <p class="card-text">{{ post.short_desc | truncatewords:15 }}</p>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+  {% else %}
+  <div class="col-md-6">
+      <br>
+      <h3>No Posts Yet...<h3>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+{% endblock %}
