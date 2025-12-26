@@ -25,7 +25,7 @@
         <div class="col d-flex justify-content-center">
           <form action="{% url 'search' %}" method="GET" style="width: 100%; max-width: 400px;">
             <div class="input-group">
-              <input class="form-control" type="text" name="keyword" value = {{keyword}} placeholder="Enter search term...">
+              <input class="form-control" type="text" name="keyword" value = {{ keyword }}>
               <button class="btn btn-warning" type="submit">Search</button>
             </div>
           </form>
