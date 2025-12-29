@@ -23,8 +23,11 @@ from blogs import views as blog_views
 
 urlpatterns = [
     path('', views.home, name = "home"),
+    path('register/', views.register, name = "register"),
     path('admin/', admin.site.urls),
     path('category/', include("blogs.urls")),
+    path('login/', views.login, name = "login"),
+    path('logout/', views.logout, name = 'logout'),
     path('blogs/search/', blog_views.search, name = "search"),
     path('<slug:slug>/', blog_views.blogs, name = 'blogs'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

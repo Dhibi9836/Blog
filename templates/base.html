@@ -33,8 +33,13 @@
 
         <!-- Right: Auth buttons -->
         <div class="col d-flex justify-content-end">
-          <a class="btn btn-sm btn-warning" href="#">Login</a>&nbsp;
-          <a class="btn btn-sm btn-outline-secondary" href="#">Sign-Up</a>
+          {% if not user.is_authenticated %}
+            <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a>&nbsp;
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Sign-Up</a>
+          {% else %}
+            <span>You are logged in as <b>{{user}}</b></span> &emsp;
+            <span><a href = "{% url 'logout' %}">Logout</a></span>
+          {% endif %}
         </div>
 
       </div>
