@@ -23,6 +23,7 @@ from blogs import views as blog_views
 
 urlpatterns = [
     path('', views.home, name = "home"),
+    path('dashboard/', include('dashboards.urls')),
     path('register/', views.register, name = "register"),
     path('admin/', admin.site.urls),
     path('category/', include("blogs.urls")),

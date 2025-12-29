@@ -23,7 +23,7 @@ def register(request) :
     if request.method == 'POST' :
         form = RegistrationForm(request.POST)
         if form.is_valid() :
-            form.save()
+            form.save() 
             return redirect('register')
     else :
         form = RegistrationForm()
@@ -38,7 +38,7 @@ def login(request) :
             user = auth.authenticate(username = username, password = password)
             if user is not None :
                 auth.login(request, user)
-            return redirect('home')
+            return redirect('dashboard')
     else :
         form = AuthenticationForm()
     return render(request, 'login.html', {"form" : form})
