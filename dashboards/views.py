@@ -109,6 +109,8 @@ def edit_user(request, pk) :
     return render(request, 'dashboard/edit_user.html', {"form" : form})
 
 def delete_user(request, pk) :
+    if not request.user.has_perm('auth.view_user') :
+        return render(request, 'dashboard/restricted.html')
     user = get_object_or_404(User, pk = pk)
     user.delete()
     return redirect('users')
