@@ -26,39 +26,29 @@
             </thead>
             <tbody>
                 {% for post in posts %}
-                {% if user.is_staff %}
-                <tr>
-                    <th>{{ forloop.counter }}</th>
-                    <td>{{ post }}</td>
-                    <td>{{ post.category }}</td>
-                    <td>{{ post.author }}</td>
                     {% if user.is_staff %}
-                    <td>{{ post.status }}</td>
-                    <td>{% if post.is_featured %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
-                    <td>
-                        <a href="{% url 'edit_post' post.id %}"><i class="fa fa-edit text-success"></i></a>&nbsp;
-                        <a href="{% url 'delete_post' post.id %}"><i class="fa fa-trash text-danger"></i></a>
-                    </td>
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ post }}</td>
+                        <td>{{ post.category }}</td>
+                        <td>{{ post.author }}</td>
+                        <td>{{ post.status }}</td>
+                        <td>{% if post.is_featured %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
+                        <td>
+                            <a href="{% url 'edit_post' post.id %}"><i class="fa fa-edit text-success"></i></a>&nbsp;
+                            <a href="{% url 'delete_post' post.id %}"><i class="fa fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                    {% else %}
+                        {% if post.status == 'Published' %}
+                        <tr>
+                            <th>{{ forloop.counter }}</th>
+                            <td>{{ post }}</td>
+                            <td>{{ post.category }}</td>
+                            <td>{{ post.author }}</td>
+                        </tr>
+                        {% endif %}
                     {% endif %}
-                </tr>
-                {% else %}
-                {% if post.status == 'Published' %}
-                <tr>
-                    <th>{{ forloop.counter }}</th>
-                    <td>{{ post }}</td>
-                    <td>{{ post.category }}</td>
-                    <td>{{ post.author }}</td>
-                    {% if user.is_staff %}
-                    <td>{{ post.status }}</td>
-                    <td>{% if post.is_featured %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
-                    <td>
-                        <a href="{% url 'edit_post' post.id %}"><i class="fa fa-edit text-success"></i></a>&nbsp;
-                        <a href="{% url 'delete_post' post.id %}"><i class="fa fa-trash text-danger"></i></a>
-                    </td>
-                    {% endif %}
-                </tr>
-                {% endif %}
-                {% endif %}
                 {% endfor %}
             </tbody>
         </table>
