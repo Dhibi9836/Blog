@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 {% for post in posts %}
-                {% if post.status == 'Published' %}
+                {% if post.status == 'Published' and not user.is_staff %}
                 <tr>
                     <th>{{ forloop.counter }}</th>
                     <td>{{ post }}</td>
