@@ -41,6 +41,8 @@ def edit_category(request, pk) :
     return render(request, 'dashboard/edit_category.html', {"form" : form, "cat" : category})
 
 def delete_category(request, pk) :
+    if not request.user.is_staff :
+        return render(request, 'dashboard/restricted.html')
     category = get_object_or_404(Category, pk = pk)
     category.delete()
     return redirect('categories')
@@ -79,6 +81,8 @@ def edit_post(request, pk) :
     return render(request, 'dashboard/edit_post.html', {"form" : form, "post" : post})
 
 def delete_post(request, pk) :
+    if not request.user.is_staff :
+        return render(request, 'dashboard/restricted.html')
     post = get_object_or_404(Blog, pk = pk)
     post.delete()
     return redirect('posts')
